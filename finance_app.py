@@ -148,62 +148,6 @@ elif page == "Model Comparison":
     with col3:
         st.metric("XGBoost Accuracy", f"{acc_xgb:.2%}")
     
-    st.divider()
-    
-    st.subheader("Confusion Matrices")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        cm_log = confusion_matrix(Y_test, Y_pred_log)
-        fig, ax = plt.subplots(figsize=(6, 5))
-        sns.heatmap(cm_log, annot=True, fmt='d', cmap='Blues', 
-                    xticklabels=['No Account', 'Has Account'],
-                    yticklabels=['No Account', 'Has Account'], ax=ax, cbar_kws={'label': 'Count'})
-        ax.set_title('Logistic Regression')
-        ax.set_ylabel('Actual')
-        ax.set_xlabel('Predicted')
-        st.pyplot(fig)
-    
-    with col2:
-        cm_rf = confusion_matrix(Y_test, Y_pred_rf)
-        fig, ax = plt.subplots(figsize=(6, 5))
-        sns.heatmap(cm_rf, annot=True, fmt='d', cmap='Greens', 
-                    xticklabels=['No Account', 'Has Account'],
-                    yticklabels=['No Account', 'Has Account'], ax=ax, cbar_kws={'label': 'Count'})
-        ax.set_title('Random Forest')
-        ax.set_ylabel('Actual')
-        ax.set_xlabel('Predicted')
-        st.pyplot(fig)
-    
-    with col3:
-        cm_xgb = confusion_matrix(Y_test, Y_pred_xgb)
-        fig, ax = plt.subplots(figsize=(6, 5))
-        sns.heatmap(cm_xgb, annot=True, fmt='d', cmap='Purples', 
-                    xticklabels=['No Account', 'Has Account'],
-                    yticklabels=['No Account', 'Has Account'], ax=ax, cbar_kws={'label': 'Count'})
-        ax.set_title('XGBoost')
-        ax.set_ylabel('Actual')
-        ax.set_xlabel('Predicted')
-        st.pyplot(fig)
-    
-    st.divider()
-    
-    st.subheader("Detailed Classification Reports")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.write("**Logistic Regression**")
-        st.text(classification_report(Y_test, Y_pred_log))
-    
-    with col2:
-        st.write("**Random Forest**")
-        st.text(classification_report(Y_test, Y_pred_rf))
-    
-    with col3:
-        st.write("**XGBoost**")
-        st.text(classification_report(Y_test, Y_pred_xgb))
 
 elif page == "About":
     st.header("About Financial Inclusion")
